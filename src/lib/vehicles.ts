@@ -1,7 +1,3 @@
-import porsche from "@/assets/porsche-911.jpg";
-import bmw from "@/assets/bmw-m4.jpg";
-import lambo from "@/assets/lambo-huracan.jpg";
-import ferrari from "@/assets/ferrari-sf90.jpg";
 import hero from "@/assets/hero.jpg";
 
 export type VehicleStatus = "Disponível" | "Reservado" | "Vendido";
