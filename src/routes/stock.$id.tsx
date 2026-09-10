@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, Check, Heart } from "lucide-react";
+import { ArrowLeft, Check, Heart, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LeadDialog } from "@/components/site/LeadDialog";
 import { FinancingSimulator } from "@/components/site/FinancingSimulator";
@@ -68,26 +68,35 @@ function VehicleDetail() {
       <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <div>
           <div className="overflow-hidden rounded-xl border border-border/70 bg-surface-2">
-            <img
-              src={vehicle.images[active] ?? vehicle.images[0]}
-              alt={`${vehicle.brand} ${vehicle.model}`}
-              className="aspect-16/10 w-full object-cover"
-            />
+            {vehicle.images.length ? (
+              <img
+                src={vehicle.images[active] ?? vehicle.images[0]}
+                alt={`${vehicle.brand} ${vehicle.model}`}
+                className="aspect-16/10 w-full object-cover"
+              />
+            ) : (
+              <div className="flex aspect-16/10 w-full flex-col items-center justify-center gap-2 text-muted-foreground">
+                <ImageIcon className="h-10 w-10" />
+                <span className="text-sm">Sem fotografias — adicione as suas imagens</span>
+              </div>
+            )}
           </div>
-          <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
-            {vehicle.images.map((img, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                className={cn(
-                  "h-20 w-28 shrink-0 overflow-hidden rounded-md border transition-colors",
-                  i === active ? "border-primary" : "border-border/70 opacity-70 hover:opacity-100",
-                )}
-              >
-                <img src={img} alt={`Vista ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
-              </button>
-            ))}
-          </div>
+          {vehicle.images.length > 0 && (
+            <div className="mt-3 flex gap-3 overflow-x-auto pb-1">
+              {vehicle.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className={cn(
+                    "h-20 w-28 shrink-0 overflow-hidden rounded-md border transition-colors",
+                    i === active ? "border-primary" : "border-border/70 opacity-70 hover:opacity-100",
+                  )}
+                >
+                  <img src={img} alt={`Vista ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <div>
