@@ -10,33 +10,72 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicosRouteImport } from './routes/servicos'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as StockRouteImport } from './routes/stock'
+import { Route as StockIdRouteImport } from './routes/stock.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicosRoute = ServicosRouteImport.update({
+  id: '/servicos',
+  path: '/servicos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StockRoute = StockRouteImport.update({
+  id: '/stock',
+  path: '/stock',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StockIdRoute = StockIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => StockRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/servicos': typeof ServicosRoute
+  '/sobre': typeof SobreRoute
+  '/stock': typeof StockRouteWithChildren
+  '/stock/$id': typeof StockIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/servicos': typeof ServicosRoute
+  '/sobre': typeof SobreRoute
+  '/stock': typeof StockRouteWithChildren
+  '/stock/$id': typeof StockIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/servicos': typeof ServicosRoute
+  '/sobre': typeof SobreRoute
+  '/stock': typeof StockRouteWithChildren
+  '/stock/$id': typeof StockIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/servicos' | '/sobre' | '/stock' | '/stock/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/servicos' | '/sobre' | '/stock' | '/stock/$id'
+  id: '__root__' | '/' | '/servicos' | '/sobre' | '/stock' | '/stock/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ServicosRoute: typeof ServicosRoute
+  SobreRoute: typeof SobreRoute
+  StockRoute: typeof StockRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +87,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/servicos': {
+      id: '/servicos'
+      path: '/servicos'
+      fullPath: '/servicos'
+      preLoaderRoute: typeof ServicosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stock': {
+      id: '/stock'
+      path: '/stock'
+      fullPath: '/stock'
+      preLoaderRoute: typeof StockRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stock/$id': {
+      id: '/stock/$id'
+      path: '/$id'
+      fullPath: '/stock/$id'
+      preLoaderRoute: typeof StockIdRouteImport
+      parentRoute: typeof StockRoute
+    }
   }
 }
 
+interface StockRouteChildren {
+  StockIdRoute: typeof StockIdRoute
+}
+
+const StockRouteChildren: StockRouteChildren = {
+  StockIdRoute: StockIdRoute,
+}
+
+const StockRouteWithChildren = StockRoute._addFileChildren(StockRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ServicosRoute: ServicosRoute,
+  SobreRoute: SobreRoute,
+  StockRoute: StockRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

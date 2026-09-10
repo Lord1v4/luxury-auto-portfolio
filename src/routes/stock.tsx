@@ -18,9 +18,8 @@ import { eur, FUELS, TRACTIONS, TRANSMISSIONS } from "@/lib/vehicles";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/stock")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    favoritos: search["favoritos"] === true || search["favoritos"] === "true" ? true : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { favoritos?: boolean } =>
+    search["favoritos"] === true || search["favoritos"] === "true" ? { favoritos: true } : {},
   head: () => ({
     meta: [
       { title: "Stock de Automóveis Desportivos e de Luxo | Apex Motors" },
