@@ -69,18 +69,18 @@ export function LeadDialog({
           <div className="space-y-2">
             <Label htmlFor="nome">Nome completo</Label>
             <Input id="nome" name="nome" placeholder="Ex.: João Silva" maxLength={100} />
-            {errors.nome && <p className="text-xs text-primary">{errors.nome}</p>}
+            {errors['nome'] && <p className="text-xs text-primary">{errors['nome']}</p>}
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input id="email" name="email" placeholder="joao@email.pt" maxLength={255} />
-              {errors.email && <p className="text-xs text-primary">{errors.email}</p>}
+              {errors['email'] && <p className="text-xs text-primary">{errors['email']}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="telefone">Telefone</Label>
               <Input id="telefone" name="telefone" placeholder="+351 291 000 000" maxLength={20} />
-              {errors.telefone && <p className="text-xs text-primary">{errors.telefone}</p>}
+              {errors['telefone'] && <p className="text-xs text-primary">{errors['telefone']}</p>}
             </div>
           </div>
           <div className="space-y-2">

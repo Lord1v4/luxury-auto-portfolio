@@ -49,7 +49,7 @@ export function FinancingSimulator({ price }: { price: number }) {
             min={0}
             max={price}
             step={500}
-            onValueChange={([v]) => setDown(v)}
+            onValueChange={([v]) => setDown(v ?? 0)}
           />
         </div>
 
@@ -73,7 +73,7 @@ export function FinancingSimulator({ price }: { price: number }) {
             min={12}
             max={120}
             step={6}
-            onValueChange={([v]) => setMonths(v)}
+            onValueChange={([v]) => setMonths(v ?? 12)}
           />
         </div>
 
