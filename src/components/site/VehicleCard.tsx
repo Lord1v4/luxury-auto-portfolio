@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Heart, Gauge, Calendar, Fuel, Cog } from "lucide-react";
+import { Heart, Gauge, Calendar, Fuel, Cog, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { eur, km as fmtKm, type Vehicle } from "@/lib/vehicles";
@@ -18,12 +18,19 @@ export function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
   return (
     <article className="group overflow-hidden rounded-xl border border-border/70 bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:glow-red">
       <div className="relative aspect-16/10 overflow-hidden bg-surface-2">
-        <img
-          src={vehicle.images[0]}
-          alt={`${vehicle.brand} ${vehicle.model}`}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+        {vehicle.images[0] ? (
+          <img
+            src={vehicle.images[0]}
+            alt={`${vehicle.brand} ${vehicle.model}`}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-muted-foreground">
+            <ImageIcon className="h-8 w-8" />
+            <span className="text-xs">Sem fotografia — adicione a sua imagem</span>
+          </div>
+        )}
         <span
           className={cn(
             "absolute left-3 top-3 rounded-full border px-2.5 py-1 text-[11px] font-medium",

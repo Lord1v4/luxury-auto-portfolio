@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { seedVehicles, type Vehicle, type VehicleStatus } from "@/lib/vehicles";
 
-const STOCK_KEY = "apex-motors:stock:v1";
+const STOCK_KEY = "apex-motors:stock:v2";
 const FAV_KEY = "apex-motors:favorites:v1";
 
 interface StockContextValue {
