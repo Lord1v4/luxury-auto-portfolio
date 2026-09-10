@@ -57,7 +57,7 @@ function Index() {
             <Star className="h-3 w-3" /> Funchal · Madeira
           </p>
           <h1 className="mt-6 max-w-3xl font-display text-4xl font-bold leading-tight sm:text-6xl lg:text-7xl">
-            Performance. <span className="text-primary">Exclusividade.</span> Paixão.
+             Performance. <span className="text-primary">Exclusividade.</span>&nbsp;Paixão.
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Descubra uma seleção exclusiva de automóveis desportivos e de luxo escolhidos para quem
