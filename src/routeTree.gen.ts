@@ -10,33 +10,124 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ContactosRouteImport } from './routes/contactos'
+import { Route as ServicosRouteImport } from './routes/servicos'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as StockRouteImport } from './routes/stock'
+import { Route as StockIndexRouteImport } from './routes/stock.index'
+import { Route as StockIdRouteImport } from './routes/stock.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactosRoute = ContactosRouteImport.update({
+  id: '/contactos',
+  path: '/contactos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicosRoute = ServicosRouteImport.update({
+  id: '/servicos',
+  path: '/servicos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StockRoute = StockRouteImport.update({
+  id: '/stock',
+  path: '/stock',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StockIndexRoute = StockIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => StockRoute,
+} as any)
+const StockIdRoute = StockIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => StockRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/contactos': typeof ContactosRoute
+  '/servicos': typeof ServicosRoute
+  '/sobre': typeof SobreRoute
+  '/stock': typeof StockRouteWithChildren
+  '/stock/$id': typeof StockIdRoute
+  '/stock/': typeof StockIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/contactos': typeof ContactosRoute
+  '/servicos': typeof ServicosRoute
+  '/sobre': typeof SobreRoute
+  '/stock/$id': typeof StockIdRoute
+  '/stock': typeof StockIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/contactos': typeof ContactosRoute
+  '/servicos': typeof ServicosRoute
+  '/sobre': typeof SobreRoute
+  '/stock': typeof StockRouteWithChildren
+  '/stock/$id': typeof StockIdRoute
+  '/stock/': typeof StockIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/contactos'
+    | '/servicos'
+    | '/sobre'
+    | '/stock'
+    | '/stock/$id'
+    | '/stock/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/contactos'
+    | '/servicos'
+    | '/sobre'
+    | '/stock/$id'
+    | '/stock'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/contactos'
+    | '/servicos'
+    | '/sobre'
+    | '/stock'
+    | '/stock/$id'
+    | '/stock/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  ContactosRoute: typeof ContactosRoute
+  ServicosRoute: typeof ServicosRoute
+  SobreRoute: typeof SobreRoute
+  StockRoute: typeof StockRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +139,77 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contactos': {
+      id: '/contactos'
+      path: '/contactos'
+      fullPath: '/contactos'
+      preLoaderRoute: typeof ContactosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicos': {
+      id: '/servicos'
+      path: '/servicos'
+      fullPath: '/servicos'
+      preLoaderRoute: typeof ServicosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stock': {
+      id: '/stock'
+      path: '/stock'
+      fullPath: '/stock'
+      preLoaderRoute: typeof StockRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stock/': {
+      id: '/stock/'
+      path: '/'
+      fullPath: '/stock/'
+      preLoaderRoute: typeof StockIndexRouteImport
+      parentRoute: typeof StockRoute
+    }
+    '/stock/$id': {
+      id: '/stock/$id'
+      path: '/$id'
+      fullPath: '/stock/$id'
+      preLoaderRoute: typeof StockIdRouteImport
+      parentRoute: typeof StockRoute
+    }
   }
 }
 
+interface StockRouteChildren {
+  StockIdRoute: typeof StockIdRoute
+  StockIndexRoute: typeof StockIndexRoute
+}
+
+const StockRouteChildren: StockRouteChildren = {
+  StockIdRoute: StockIdRoute,
+  StockIndexRoute: StockIndexRoute,
+}
+
+const StockRouteWithChildren = StockRoute._addFileChildren(StockRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  ContactosRoute: ContactosRoute,
+  ServicosRoute: ServicosRoute,
+  SobreRoute: SobreRoute,
+  StockRoute: StockRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
