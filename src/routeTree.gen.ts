@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ContactosRouteImport } from './routes/contactos'
 import { Route as ServicosRouteImport } from './routes/servicos'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as StockRouteImport } from './routes/stock'
@@ -18,6 +20,16 @@ import { Route as StockIdRouteImport } from './routes/stock.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactosRoute = ContactosRouteImport.update({
+  id: '/contactos',
+  path: '/contactos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicosRoute = ServicosRouteImport.update({
@@ -43,6 +55,8 @@ const StockIdRoute = StockIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/contactos': typeof ContactosRoute
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
   '/stock': typeof StockRouteWithChildren
@@ -50,6 +64,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/contactos': typeof ContactosRoute
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
   '/stock': typeof StockRouteWithChildren
@@ -58,6 +74,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/contactos': typeof ContactosRoute
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
   '/stock': typeof StockRouteWithChildren
@@ -65,14 +83,38 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/servicos' | '/sobre' | '/stock' | '/stock/$id'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/contactos'
+    | '/servicos'
+    | '/sobre'
+    | '/stock'
+    | '/stock/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/servicos' | '/sobre' | '/stock' | '/stock/$id'
-  id: '__root__' | '/' | '/servicos' | '/sobre' | '/stock' | '/stock/$id'
+  to:
+    | '/'
+    | '/admin'
+    | '/contactos'
+    | '/servicos'
+    | '/sobre'
+    | '/stock'
+    | '/stock/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/contactos'
+    | '/servicos'
+    | '/sobre'
+    | '/stock'
+    | '/stock/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  ContactosRoute: typeof ContactosRoute
   ServicosRoute: typeof ServicosRoute
   SobreRoute: typeof SobreRoute
   StockRoute: typeof StockRouteWithChildren
@@ -85,6 +127,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contactos': {
+      id: '/contactos'
+      path: '/contactos'
+      fullPath: '/contactos'
+      preLoaderRoute: typeof ContactosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/servicos': {
@@ -130,6 +186,8 @@ const StockRouteWithChildren = StockRoute._addFileChildren(StockRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  ContactosRoute: ContactosRoute,
   ServicosRoute: ServicosRoute,
   SobreRoute: SobreRoute,
   StockRoute: StockRouteWithChildren,
