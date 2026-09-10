@@ -140,7 +140,7 @@ function ContactosPage() {
             <div className="space-y-2">
               <Label htmlFor="viatura">Viatura de interesse</Label>
               <Select value={viatura} onValueChange={setViatura}>
-                <SelectTrigger id="viatura"><SelectValue /></SelectTrigger>
+                <SelectTrigger id="viatura"><SelectValue>{viatura}</SelectValue></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="Aconselhamento geral">Aconselhamento geral</SelectItem>
                   {vehicles.map((v) => (

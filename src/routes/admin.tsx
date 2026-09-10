@@ -148,7 +148,7 @@ function AdminPage() {
                   <td className="p-4">{fmtKm(v.km)}</td>
                   <td className="p-4">
                     <Select value={v.status} onValueChange={(s) => updateStatus(v.id, s as VehicleStatus)}>
-                      <SelectTrigger className="h-9 w-40"><SelectValue /></SelectTrigger>
+                      <SelectTrigger className="h-9 w-40"><SelectValue>{v.status}</SelectValue></SelectTrigger>
                       <SelectContent>
                         {statuses.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
                       </SelectContent>
@@ -189,7 +189,7 @@ function AdminPage() {
           <div className="space-y-2">
             <Label>Estado</Label>
             <Select value={status} onValueChange={(s) => setStatus(s as VehicleStatus)}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger><SelectValue>{status}</SelectValue></SelectTrigger>
               <SelectContent>
                 {statuses.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
               </SelectContent>

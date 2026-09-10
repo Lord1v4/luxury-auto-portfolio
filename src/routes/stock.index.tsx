@@ -39,6 +39,11 @@ export const Route = createFileRoute("/stock/")({
 });
 
 const ALL = "todos";
+const sortLabels: Record<string, string> = {
+  recentes: "Mais recentes",
+  "preco-asc": "Preço mais baixo",
+  "preco-desc": "Preço mais alto",
+};
 const MAX_PRICE = 600000;
 
 function StockPage() {
@@ -125,7 +130,7 @@ function StockPage() {
           />
         </div>
         <Select value={sort} onValueChange={setSort}>
-          <SelectTrigger className="w-full lg:w-56"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="w-full lg:w-56"><SelectValue>{sortLabels[sort]}</SelectValue></SelectTrigger>
           <SelectContent>
             <SelectItem value="recentes">Mais recentes</SelectItem>
             <SelectItem value="preco-asc">Preço mais baixo</SelectItem>
@@ -159,7 +164,7 @@ function StockPage() {
           <div className="space-y-2">
             <Label>Marca</Label>
             <Select value={brand} onValueChange={setBrand}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger><SelectValue>{brand === ALL ? "Todas as marcas" : brand}</SelectValue></SelectTrigger>
               <SelectContent>
                 <SelectItem value={ALL}>Todas as marcas</SelectItem>
                 {brands.map((b) => <SelectItem key={b} value={b}>{b}</SelectItem>)}
@@ -211,7 +216,7 @@ function StockPage() {
           <div className="space-y-2">
             <Label>Combustível</Label>
             <Select value={fuel} onValueChange={setFuel}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger><SelectValue>{fuel === ALL ? "Todos" : fuel}</SelectValue></SelectTrigger>
               <SelectContent>
                 <SelectItem value={ALL}>Todos</SelectItem>
                 {FUELS.map((f) => <SelectItem key={f} value={f}>{f}</SelectItem>)}
@@ -222,7 +227,7 @@ function StockPage() {
           <div className="space-y-2">
             <Label>Caixa</Label>
             <Select value={transmission} onValueChange={setTransmission}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger><SelectValue>{transmission === ALL ? "Todas" : transmission}</SelectValue></SelectTrigger>
               <SelectContent>
                 <SelectItem value={ALL}>Todas</SelectItem>
                 {TRANSMISSIONS.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
@@ -233,7 +238,7 @@ function StockPage() {
           <div className="space-y-2">
             <Label>Tração</Label>
             <Select value={traction} onValueChange={setTraction}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger><SelectValue>{traction === ALL ? "Todas" : traction}</SelectValue></SelectTrigger>
               <SelectContent>
                 <SelectItem value={ALL}>Todas</SelectItem>
                 {TRACTIONS.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
