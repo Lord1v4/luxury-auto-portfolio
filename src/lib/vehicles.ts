@@ -53,7 +53,7 @@ export const seedVehicles: Vehicle[] = [
     ],
     description:
       "Um ícone absoluto da engenharia alemã. Este 911 combina a precisão cirúrgica do chassis com um motor boxer que responde de forma imediata em qualquer regime. Mantido exclusivamente em rede oficial, com histórico completo e pronto a entregar.",
-    images: [porsche, hero, porsche],
+    images: [],
     status: "Disponível",
     featured: true,
     addedAt: Date.now() - 1000 * 60 * 60 * 24 * 3,
@@ -83,7 +83,7 @@ export const seedVehicles: Vehicle[] = [
     ],
     description:
       "Tração integral M xDrive, 530 cv e uma postura que não passa despercebida. Um desportivo de utilização diária real, com conforto de gran turismo e capacidade de pista quando a estrada pede.",
-    images: [bmw, hero, bmw],
+    images: [],
     status: "Disponível",
     featured: true,
     addedAt: Date.now() - 1000 * 60 * 60 * 24 * 1,
@@ -112,7 +112,7 @@ export const seedVehicles: Vehicle[] = [
     ],
     description:
       "O último grande V10 atmosférico. Som, resposta e emoção que nenhum turbo consegue replicar. Unidade nacional, com apenas 4.800 km e revisões em concessionário oficial.",
-    images: [lambo, hero, lambo],
+    images: [],
     status: "Disponível",
     featured: true,
     addedAt: Date.now() - 1000 * 60 * 60 * 24 * 12,
@@ -141,7 +141,7 @@ export const seedVehicles: Vehicle[] = [
     ],
     description:
       "Mil cavalos de potência combinada e a primeira Ferrari de série com tecnologia híbrida plug-in derivada da Fórmula 1. Uma peça de coleção com desempenho de hipercarro e modo 100% elétrico para circular em cidade.",
-    images: [ferrari, hero, ferrari],
+    images: [],
     status: "Reservado",
     featured: true,
     addedAt: Date.now() - 1000 * 60 * 60 * 24 * 20,
@@ -169,7 +169,7 @@ export const seedVehicles: Vehicle[] = [
     ],
     description:
       "Gran turismo de quatro portas com alma de desportivo. Conforto de topo, espaço real para quatro adultos e um V8 biturbo com carácter inconfundível.",
-    images: [hero, hero],
+    images: [],
     status: "Disponível",
     featured: false,
     addedAt: Date.now() - 1000 * 60 * 60 * 24 * 30,
@@ -197,7 +197,7 @@ export const seedVehicles: Vehicle[] = [
     ],
     description:
       "A carrinha mais desejada do mercado. 630 cv, tração quattro e a praticidade de uma família inteira a bordo sem abdicar de desempenho de supercarro.",
-    images: [hero, hero],
+    images: [],
     status: "Disponível",
     featured: false,
     addedAt: Date.now() - 1000 * 60 * 60 * 24 * 7,
@@ -224,7 +224,7 @@ export const seedVehicles: Vehicle[] = [
     ],
     description:
       "Elegância britânica com atitude. Um dos desportivos com melhor equilíbrio entre condução analógica e tecnologia moderna.",
-    images: [hero, hero],
+    images: [],
     status: "Vendido",
     featured: false,
     addedAt: Date.now() - 1000 * 60 * 60 * 24 * 45,
@@ -251,7 +251,7 @@ export const seedVehicles: Vehicle[] = [
     ],
     description:
       "Aerodinâmica ativa, chassis em fibra de carbono e uma relação peso/potência que ainda hoje humilha rivais mais recentes.",
-    images: [hero, hero],
+    images: [],
     status: "Disponível",
     featured: false,
     addedAt: Date.now() - 1000 * 60 * 60 * 24 * 60,
